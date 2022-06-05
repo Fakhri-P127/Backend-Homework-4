@@ -1,0 +1,278 @@
+﻿@model BlogVM
+<main id="main">
+
+    <!-- ======= Blog Header ======= -->
+    <div class="header-bg page-area">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="slider-content text-center">
+                        <div class="header-bottom">
+                            <div class="layer2">
+                                <h1 class="title2">Blog Details </h1>
+                            </div>
+                            <div class="layer3">
+                                <h2 class="title3">profesional Blog Page</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Blog Header -->
+    <!-- ======= Blog Page ======= -->
+    <div class="blog-page area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="page-head-blog">
+                        <div class="single-blog-page">
+                            <!-- search option start -->
+                            <form action="#">
+                                <div class="search-option">
+                                    <input type="text" placeholder="Search...">
+                                    <button class="button" type="submit">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <!-- search option end -->
+                        </div>
+                        <div class="single-blog-page">
+                            <!-- recent start -->
+                            <div class="left-blog">
+                                <h4>recent post</h4>
+                                <div class="recent-post">
+                                    @foreach (Blog blog in Model.Blogs) 
+                                    {
+                                        <!-- start single post -->
+                                        <div class="recent-single-post">
+                                            <div class="post-img">
+                                                <a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">
+                                                    <img src="~/assets/img/blog/@blog.Image" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="pst-content">
+                                                @if (blog.Text.Length > 20)
+                                                {
+                                                    <p><a href="#"> @blog.Text.Substring(0, 20)...</a></p>
+                                                }
+                                                else
+                                                {
+                                                    <p><a href="#"> @blog.Text</a></p>
+
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <!-- End single post -->
+                                    }
+
+
+                                </div>
+                            </div>
+                            <!-- recent end -->
+                        </div>
+                        <div class="single-blog-page">
+                            <div class="left-blog">
+                                <h4>categories</h4>
+                                <ul>
+                                    <li>
+                                        <a href="#">Portfolio</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Project</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">wordpress</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Joomla</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Html</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Website</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="single-blog-page">
+                            <div class="left-blog">
+                                <h4>archive</h4>
+                                <ul>
+                                    <li>
+                                        <a href="#">07 July 2016</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">29 June 2016</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">13 May 2016</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">20 March 2016</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">09 Fabruary 2016</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="single-blog-page">
+                            <div class="left-tags blog-tags">
+                                <div class="popular-tag left-side-tags left-blog">
+                                    <h4>popular tags</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Portfolio</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Project</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Design</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">wordpress</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Joomla</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Html</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Masonry</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Website</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End left sidebar -->
+                <!-- Start single blog -->
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <!-- single-blog start -->
+                            <article class="blog-post-wrapper">
+                                <div class="post-thumbnail">
+                                    <img src="~/assets/img/blog/@Model.Blog.Image" alt="" />
+                                </div>
+                                <div class="post-information">
+                                    <h2>@Model.Blog.Title</h2>
+                                    <div class="entry-meta">
+                                        <span class="author-meta"><i class="bi bi-person"></i> <a href="#">admin</a></span>
+                                        <span><i class="bi bi-clock"></i> @Model.Blog.PostTime</span>
+                                        <span class="tag-meta">
+                                            <i class="bi bi-folder"></i>
+                                            <a href="#">painting</a>,
+                                            <a href="#">work</a>
+                                        </span>
+                                        <span class="tagsMVC">
+                                            <i class="bi bi-tags"></i>
+                                            @if (Model.Blog.Tags.Count == 0)
+                                            {
+                                                <a href="#">no tags</a>
+                                            }
+                                            else
+                                            {
+                                                @foreach (Tag tag in Model.Blog.Tags.Take(3))
+                                                    //css elave etdim ki, sonuncuya ya da bir denedise vergul qoymasin
+                                                {<a href="#" >@tag.TagName</a>
+                                                }
+                                            }
+
+
+                                        </span>
+                                        <span><i class="bi bi-chat"></i> <a href="#">@Model.Blog.Comments.Count comments </a></span>
+                                    </div>
+                                    <div class="entry-content">
+                                        <p>
+                                           @Model.Blog.Text
+                                        </p>
+                                        <blockquote>
+                                            <p>
+                                               @Model.Blog.BlockQuote
+                                            </p>
+                                        </blockquote>
+                                       
+                                    </div>
+                                </div>
+                            </article>
+                            <div class="clear"></div>
+                            <div class="single-post-comments">
+                                <div class="comments-area">
+                                    <div class="comments-heading">
+                                        <h3>@(Model.Blog.Comments.Count == 0 ? "No Comments" : $"{Model.Blog.Comments.Count()} comments")</h3>
+                                    </div>
+                                    <div class="comments-list">
+                                        <ul>
+                                            @foreach (Comment comment in Model.Blog.Comments.OrderByDescending(c=>c.Date).Take(6))//komment chox olsa ashmasin deye
+                                            {
+                                                <li class="threaded-comments">
+                                                    <div class="comments-details">
+                                                        <div class="comments-list-img">
+                                                            <img src="~/assets/img/blog/@comment.Image" alt="post-author">
+                                                        </div>
+                                                        <div class="comments-content-wrap">
+                                                            <span>
+                                                                <b><a href="#">@comment.Username</a></b>
+                                                                Post author
+                                                                <span class="post-time">@comment.Date</span>
+                                                                <a href="#">Reply</a>
+                                                            </span>
+                                                            <p>@comment.Message</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="comment-respond">
+                                    <h3 class="comment-reply-title">Leave a Reply </h3>
+                                    <span class="email-notes">Your email address will not be published. Required fields are marked *</span>
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <p>Name *</p>
+                                                <input type="text" />
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <p>Email *</p>
+                                                <input type="email" />
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <p>Website</p>
+                                                <input type="text" />
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
+                                                <p>Website</p>
+                                                <textarea id="message-box" cols="30" rows="10"></textarea>
+                                                <input type="submit" value="Post Comment" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- single-blog end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Blog Page -->
+
+</main><!-- End #main -->
